@@ -66,4 +66,17 @@ SELECT e.last_name, count(e.last_name) as name_count
 	
 	group by e.last_name
 	order by count(e.last_name) desc;
+	
+	----
+	SELECT e.emp_no, count(e.emp_no) as Count_emp
+	
+	FROM public.employees e
+	group by e.emp_no
+	order by count(e.emp_no) desc;
+------
+
+ALTER TABLE dept_emp add Primary Key (emp_no, dept_no);
+
+   
+	
 
