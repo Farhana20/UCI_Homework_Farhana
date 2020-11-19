@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -44,6 +45,9 @@ def home():
         f"<br/>"
         f"/api/v1.0/tobs<br/> List of Teamperature Observations (tobs) for most active station"
         f"<br/>"
+        f"/api/v1.0/<start> <br> Calculates the MIN/AVG/MAX temperature for all dates greater than and equal to the start date <br/>"
+        f"<br/>"
+        f"/api/v1.0/<start>/<end> <br> Calculate the MIN/AVG/MAX temperature for dates between the start and end date inclusive<br/>"
 
 
 
@@ -65,14 +69,14 @@ def precipitation():
 
     ###############################################################################################################
 @app.route("/api/v1.0/stations")
-def station():
+def stations():
     station_name = session.query(Station.name, Station.station)
     stations = pd.read_sql(station_name.statement, station_name.session.bind)
     return jsonify(stations.to_dict())
 
 ####################################################################################################
 
-@app.route("/api/v1.0/staions")
+@app.route("/api/v1.0/tobs")
 def tobs():
     # define dates
     latest_date = session.query(Measurement.date).order_by(Measurement.date.desc()).first()
@@ -81,20 +85,41 @@ def tobs():
 
 #query for date and temperatuture observations for previous year
 
-tobs_dates = session.query(Measurement.date, Measurement.tobs).\
-                  filter(Measurement.date >= year_ago).order_by(Measurement.date).all()
+    tobs_dates = session.query(Measurement.date, Measurement.tobs).\
+                    filter(Measurement.date >= year_ago).order_by(Measurement.date).all()
 
-#Create list of dicts with date and tobs
+    #Create list of dicts with date and tobs
 
-tobs_year = []
+    tobs_year = []
 
-for data in tobs_dates:
-    row = {}
-    row["date"] = data[0]
-    row["tobs"] = data[1]
-    tobs_year.append(row)
-        
-return jsonify(tobs_year)
+    for data in tobs_dates:
+        row = {}
+        row["date"] = data[0]
+        row["tobs"] = data[1]
+        tobs_year.append(row)
+            
+    return jsonify(tobs_year)
+
+###################################################################################################
+
+@app.route("/api/v1.0/<start>") 
+def start(start):
+    
+    start_date = session.query(Measurement.date,func.avg(Measurement.tobs),func.min(Measurement.tobs),func.max(Measurement.tobs)) \
+             .filter(Measurement.date >= start).group_by(Measurement.date).all()
+    
+    return jsonify(start_date)
+
+################################################################################################
+
+@app.route("/api/v1.0/<start>/<end>")
+def start_end(start,end):
+    
+      
+    range_date = session.query(Measurement.date,func.avg(Measurement.tobs),func.min(Measurement.tobs),func.max(Measurement.tobs)) \
+             .filter(Measurement.date >= start).filter(Measurement.date <= end).group_by(Measurement.date).all()
+    
+    return jsonify(range_date)
 
 if __name__ == '__main__':
     app.run(debug=True)
