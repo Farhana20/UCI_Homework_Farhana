@@ -1,24 +1,4 @@
-// json data
-//function fetchMetadata(sample) {
-    //d3json('/metadata/${sample').then((data) => {
 
-        //var PANEL = d3.select('#sample-metadata');
-
-        //PANEL.html("");
-
-        //Object.entries(data).forEach(([key, value]) => {
-            //PANEL.append("h5").text('${key}: ${value');
-        //});
-
-        //Bonus- for guage chart
-
-        //fetchGuage(data.WFREQ);
-
-    //});
-    
-//}
-
-//Bar chart
 
 function barChart(sample) {
     d3.json('samples.json').then((data) => {
@@ -49,16 +29,55 @@ function barChart(sample) {
     });
 };  
 
+function bubbleChart(sample) {
+    d3.json('samples.json').then((data) => {
+        console.log(data);
+     var oneSample = data.samples.filter(sampleId => sampleId.id == sample)[0]
+       
+
+       var OtuIds = oneSample.otu_ids.reverse();
+
+       var SampleValue = oneSample.sample_values.reverse();
+       var OtuLabel = oneSample.otu_labels.reverse();
+
+       var bubbleTrace = [
+        {
+          x: OtuIds,
+          y: SampleValue,
+          text: OtuLabel,
+          mode: 'markers',
+          marker: {
+          color: OtuIds,
+          size: SampleValue
+          }
+        }
+
+      ];
+
+       var bubbleLayout = {
+        title: "Market Size and Color for each sample ID by sample value",
+        showlegend: false,
+        x: "OTU ID",
+       };
+
+        Plotly.newPlot('bubble', bubbleTrace, bubbleLayout)
+    });
+};
+
 function optionChanged (sampleId) {
     barChart(sampleId)
 }
 
 function init() {
     barChart(940)
+}
 
-
-
+function init() {
+    barChart(940)
+    bubbleChart(940)
 }
 
 init()
+//Add event listener for submit button
+//d3.select("#selDataset").on("change", handleSubmit);
 
