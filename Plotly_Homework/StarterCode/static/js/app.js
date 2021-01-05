@@ -64,20 +64,49 @@ function bubbleChart(sample) {
     });
 };
 
+// function Metadata(sample) {
+//     d3.json('samples.json').then((data) => {
+//         var metadata = data.metadata;
+//         var selectedSample = metadata.filter(object => object.id == sample);
+//         var filteredData = selectedSample[0];
+//         var Panel =d3.select("#sample-metadata");
+
+//         Panel.html("");
+
+//         Object.defineProperties(filteredData).forEach(([key, Value]) => {
+   //          Panel.append("h6").text(key.toUpperCase() + ': ' + value);
+
+//})
+
+//     });
+// }
+
 function optionChanged (sampleId) {
     barChart(sampleId)
+    bubbleChart(sampleId)
 }
 
-function init() {
-    barChart(940)
-}
+
 
 function init() {
+    var selectID = d3.select("#selDataset");
+    d3.json('samples.json').then((data) => {
+        
+        var allNames = data.names
+        allNames.forEach(element => {
+            selectID.append("option")
+        .text(element)
+        .property("value", element);
+            
+        });
+    
+    })
+
     barChart(940)
     bubbleChart(940)
 }
 
-init()
+init();
 //Add event listener for submit button
 //d3.select("#selDataset").on("change", handleSubmit);
 
