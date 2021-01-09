@@ -63,27 +63,28 @@ function bubbleChart(sample) {
         Plotly.newPlot('bubble', bubbleTrace, bubbleLayout)
     });
 };
+// Demographic Information
+ function Metadata(sample) {
+    d3.json('samples.json').then((data) => {
+        var metadata = data.metadata;
+        var selectedSample = metadata.filter(object => object.id == sample);
+        var filteredData = selectedSample[0];
+        var Panel = d3.select("#sample-metadata");
 
-// function Metadata(sample) {
-//     d3.json('samples.json').then((data) => {
-//         var metadata = data.metadata;
-//         var selectedSample = metadata.filter(object => object.id == sample);
-//         var filteredData = selectedSample[0];
-//         var Panel =d3.select("#sample-metadata");
+        Panel.html("");
 
-//         Panel.html("");
+        Object.entries(filteredData).forEach(([key, value]) => {
+            Panel.append("h6").text(key.toUpperCase() + ': ' + value);
 
-//         Object.defineProperties(filteredData).forEach(([key, Value]) => {
-   //          Panel.append("h6").text(key.toUpperCase() + ': ' + value);
+          })
 
-//})
-
-//     });
-// }
+     });
+ }
 
 function optionChanged (sampleId) {
     barChart(sampleId)
     bubbleChart(sampleId)
+    Metadata(sampleId)
 }
 
 
@@ -104,6 +105,7 @@ function init() {
 
     barChart(940)
     bubbleChart(940)
+    Metadata(940)
 }
 
 init();
