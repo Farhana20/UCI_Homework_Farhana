@@ -149,21 +149,22 @@ var circlesGroup = chartGroup.selectAll("circle")
    .append("circle")
    .attr("cx", d => xLinearScale(d[chosenXAxis]))
    .attr("cy", d => yLinearScale(d.healthcare))
-   .attr("r", 20)
-   .attr("fill", "pink")
+   .attr("r", 15)
+   .attr("fill", "blue")
    .attr("opacity", ".5");
 
    // Create Group for Abbreviation
 
-   var circlesGroup = chartGroup.selectAll("state-text")
-   .data(healthData)
-   .enter()
-   .append("state-text")
-   .attr("cx", d => xLinearScale(d[chosenXAxis]))
-   .attr("cy", d => yLinearScale(d.healthcare))
-   .attr("r", 20)
-   .attr("fill", "pink")
-   .attr("opacity", ".5");
+    var circlesGroup = chartGroup.selectAll(".stateText")
+    .data(healthData)
+    .enter()
+    .append("text")
+    .classed("stateText", true)
+    .attr("x", d => xLinearScale(d[chosenXAxis]))
+    .attr("y", d => yLinearScale(d.healthcare))
+    .attr("dy", 3)
+    .attr("font-size", "8px")
+    .text(function(d){return d.abbr});
 
 
 
@@ -176,14 +177,14 @@ var povertyLabel = labelsGroup.append("text")
    .attr("y", 20)
    .attr("value", "poverty") // value to grab for event listener
    .classed("active", true)
-   .text("Hair Metal Ban Hair Length (inches)");
+   .text("In Poverty(%)");
 
 var healthcareLabel = labelsGroup.append("text")
    .attr("x", 0)
    .attr("y", 40)
    .attr("value", "healthcare") // value to grab for event listener
    .classed("inactive", true)
-   .text("# of Albums Released");
+   .text("Healthcare Vs Poverty");
  // append y axis
  chartGroup.append("text")
  .attr("transform", "rotate(-90)")
@@ -191,7 +192,7 @@ var healthcareLabel = labelsGroup.append("text")
  .attr("x", 0 - (height / 2))
  .attr("dy", "1em")
  .classed("axis-text", true)
- .text("Number of Billboard 500 Hits");
+ .text("Lacks Healthcare(%)");
 
 // updateToolTip function above csv import
 var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
