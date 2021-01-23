@@ -19,26 +19,7 @@ function colorScale(magnitude) {
 }
 
 
-// d3.json(queryUrl, function(data) {
-//   createFeatures(data.Features);
-// });
 
-// function createFeatures(earthquakeData) {
-//   function onEachFeature(feature, layer) {
-//     layer.bindPopup("<h3>" + feature.properties.place +
-//     "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
-  
-//   }
-
-//   var earthquakes = L.geoJSON(earthquakeData, {
-//     onEachFeature: onEachFeature
-    
-    
-//   });
-
-//   createMap(earthquakes);
-
-// }
 
 function createFeatures(earthquakeData) {
   
@@ -54,7 +35,7 @@ function createFeatures(earthquakeData) {
   var baseMarkerOptions = {
     color: '#191919',
     weight: 1,
-    fillOpacity: 0.9
+    fillOpacity: 0.6
   }
 
   // Create GeoJSON layer containing the features array
@@ -99,19 +80,19 @@ function createMap(earthquakes) {
       accessToken: API_KEY
     });
 
-    var outdoorsmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors,\
-     <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-    maxZoom: 18,
-    id: "mapbox.outdoors",
-    accessToken: API_KEY
+   var outdoorsmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+      attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors,\
+      <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+      maxZoom: 18,
+      id: "mapbox.outdoors",
+      accessToken: API_KEY
     });
   
     // Define a baseMaps object to hold our base layers
     var baseMaps = {
       "Street Map": streetmap,
       "Dark Map": darkmap,
-      "Outdoors": outdoorsmap
+      "Outdoor Map": outdoorsmap
     };
   
     // Create overlay object to hold our overlay layer
@@ -135,20 +116,28 @@ function createMap(earthquakes) {
 
 
 
-// Insert 'legend' div when layer control is added
-legend.onAdd = function(){
-  labels = ['0-1', '1-2', '2-3', '3-4', '4-5', '5+']
-  var div = L.DomUtil.create('div', 'legend');
-  div.innerHTML += '<h3>Magnitude</h3>'
-  for (var i = 0; i <= 5; i++) {
-    div.innerHTML += '<p><span style="font-size:20px; background-color:' + colorScale(i) +
-      ';">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + labels[i] + '</p>';
-  }
-  
-  return div;
-};
 
-// Add legend
-legend.addTo(myMap);
-}
+  var legend = L.control({position: 'bottomright'});
+  legend.onAdd = function() {
+  
+  //create a legend element
+  var div = L.DomUtil.create('div', 'legend');
+
+  //create labels and values to find colors
+  var labels = ["0-1", "1-2", "2-3", "3-4", "4-5", "5+"];
+  var grades = [0.5, 1.5, 2.5, 3.5, 4.5, 5.5];
+
+  //create legend html
+  div.innerHTML = '<div><strong>Magnitude</strong></div>';
+  for(var i = 0; i < grades.length; i++) {
+      div.innerHTML += '<i style = "background:' + colorScale(grades[i]) + '">&nbsp;</i>&nbsp;&nbsp;'
+      + labels[i] + '<br/>';
+    };
+    return div;
+  };
+
+  //add legend to map
+  legend.addTo(myMap);
+
+ }
 
