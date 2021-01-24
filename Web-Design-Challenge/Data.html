@@ -4,26 +4,36 @@
     <meta charset="UTF-8">
     <title>visualization dashboard - Weather Summary</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href = "styles.css">
+  <style>
+        body {background-color: ghostwhite}
+  </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">Latitude</a>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">Latitude</a>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Plots
+          
+            <li class="dropdown">
+              <a  href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Plots <span class="caret"></span></a>
+                
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="Visualization1.html">Windspeed</a>
                 <a class="dropdown-item" href="Visualization2.html">humidity</a>
                 <a class="dropdown-item" href="Visualization3.html">latitude</a>
-                <a class="dropdown-item" href="Visualization4.html">whatever</a>
+                <a class="dropdown-item" href="Visualization4.html">Wind Speed</a>
                 
                 
               </div>
@@ -41,6 +51,19 @@
           
         </div>
       </nav>
+
+      <br>
+
+    <div class="container">   
+        <div class="title">
+            <h1>Data</h1>
+            <p>The following data includes all the data used for plotting during this project.</p>
+            <hr>
+            <br> 
+    <table id= "maintable" border="1" class="dataframe">
+
+
+
       <div class="table-responsive">
         <table class="table" id="table">
             <thead>

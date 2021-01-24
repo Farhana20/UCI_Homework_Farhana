@@ -1,0 +1,92 @@
+.container {
+    display: block;
+    background-color: lightblue;
+}
+
+.navbar {
+    background: lightgray;
+    font-size: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+.navbar-brand {
+    font-size: 30px;
+    color: black;
+    background: lightblue;
+
+}
+.navbar li a {
+    display: block;
+    color: black;
+  }
+
+
+
+.container h1 {
+    
+    margin-left: 10px;
+}
+
+.container h2 {
+    padding-top: 30px;
+    padding-left: 20px;;
+}
+.container h3 {
+    color: black;
+    text-align: center;
+}
+.container p {
+    display: block;
+    padding: 10px;
+    line-height: 2.2;
+    padding-right: 20px;
+    padding-left: 20px;
+    color: white;
+}
+.container img {
+    display: inline;
+    margin: 20px 20px;
+}
+
+
+.col-lg-8 {
+    border-right: solid ghostwhite;
+    border-right-width: 40px;
+    padding: 40px;
+}
+
+.col-md-6 {
+    margin-left: -10px;
+}
+
+
+#maintable {  
+    width: 100%;
+    border-collapse: collapse; 
+    border-spacing: 40px;
+    padding: 50px;
+}
+#maintable td, th { border: 1px solid lightskyblue; 
+text-align:  center;}  
+
+
+#maintable th {  
+    background: lightgray; 
+    font-weight: bold; 
+}
+
+#maintable td {  
+    background: lightskyblue; 
+    text-align: center;
+}
+
+
+@media (max-width: 800px)
+{
+    .col-lg-8 {
+        border-bottom: solid ghostwhite;
+        border-right: 20px;
+        border-bottom-width: 50px;
+    }
+}
