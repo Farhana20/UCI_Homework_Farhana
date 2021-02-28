@@ -1,94 +1,124 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>visualization dashboard - Weather Summary</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bootstrap Visualization Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- Bootstrap & CSS link-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">Latitude</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Plots
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="Visualization1.html">Max Temperature</a>
-                <a class="dropdown-item" href="Visualization2.html">Humidity</a>
-                <a class="dropdown-item" href="Visualization3.html">Cloudiness</a>
-                <a class="dropdown-item" href="Visualization4.html">Wind Speed</a>
-                
-                
+  <!-- Nav -->
+  <div class="navigation">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" style="background-color: #094414;" href="index.html">Latitude</a>
+      <button class="navbar-toggler  border border-white" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Plots
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="Visualization1.html">Max Temperature</a>
+              <a class="dropdown-item active" href="Visualization2.html">Humidity</a>
+              <a class="dropdown-item" href="Visualization3.html">Cloudiness</a>
+              <a class="dropdown-item" href="Visualization4.html">Wind Speed</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="comparision.html">Comparison</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="data.html">Data</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <!-- Content  -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-12">
+        <!-- LeftBox  -->
+        <div class="box">
+          <h3 class="title">Humidity</h3>
+          <hr>
+          <img src="Resources/assets/images/Fig2.png" alt="Humidity Graph">
+          <p>There is not a strong correlation between Humidity and Latitude. The plots display a high variation of
+            humidity at different latitudes. Thus, we can conclude that there isn't a significant
+            correlation between humidity and latitude.</p>
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-12">
+        <!-- Right Box -->
+        <div class="box">
+          <h5 class="title">Visualizations</h5>
+          <hr>
+
+
+          <div class="container">
+            <div class="row" style="padding-bottom: 30px;">
+              <div class="col-6">
+                <a href="Visualization1.html">
+                  <img class="panel" src="Resources/assets/images/Fig1.png" alt="Max Temperature Image">
+                </a>
               </div>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="Comparision.html">Comparision <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="Data.html">Data <span class="sr-only">(current)</span></a>
-            </li>
-            
-           
-            
-          </ul>
-          
-        </div>
-      </nav>
-      <div class=container>
-          
-      
-        <div class="row"> 
+              <div class="col-6">
+                <a href="Visualization2.html">
+                  <img class="panel active" src="Resources/assets/images/Fig2.png" alt="Humidity Graph">
+                </a>
+              </div>
+            </div>
 
-            <div class="col-8">
-                <h1>Summary:Latitude Vs.X</h1>
-                <img src="Resources/assets/images/Fig2.png" class="img-responsive"/>
-
+            <div class="row" style="padding-bottom: 30px;">
+              <div class="col-6">
+                <a href="Visualization3.html">
+                  <img class="panel" src="Resources/assets/images/Fig3.png" alt="Cloudiness Graph">
+                </a>
+              </div>
+              <div class="col-6">
+                <a href="Visualization4.html">
+                  <img class="panel" src="Resources/assets/images/Fig4.png" alt="Wind Speed Graph">
+                </a>
+              </div>
 
 
             </div>
-            <div class="col-4">
-                <h1>Visualizations</h1>
-                <div class="row">
-                    <div class="col-6">
-                      <a href="Visualization1.html"> <img src="Resources/assets/images/Fig1.png" class="img-thumbnail" alt="Cinque Terre"></a>
-
-                    </div>
-                    <div class="col-6">
-                      <a href="Visualization2.html"> <img src="Resources/assets/images/Fig2.png" class="img-thumbnail" alt="Cinque Terre"></a>
-
-                    </div>
+          </div>
 
 
-                
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                      <a href="Visualization3.html"> <img src="Resources/assets/images/Fig3.png" class="img-thumbnail" alt="Cinque Terre"></a>
-
-                    </div>
-                    <div class="col-6">
-                      <a href="Visualization4.html"> <img src="Resources/assets/images/Fig4.png" class="img-thumbnail" alt="Cinque Terre"></a>
-
-                    </div>
-
-
-                
-                </div>
-
-
-            </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer  -->
+  <footer>
+    <div class="footer">Copyright &copy; Farhana Hossain 2020</div>
+  </footer>
 
-</div>
+  <!-- Bootstrap JS's -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 </html>
